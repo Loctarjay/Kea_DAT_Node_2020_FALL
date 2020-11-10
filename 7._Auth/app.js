@@ -3,8 +3,23 @@ const app = express();
 
 app.use(express.json());
 
-const authRoute = require("./routes/auth.js");
-app.use(authRoute);
+require("dotenv").config();
+
+const session = require("express-session");
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
+
+const authRoutes = require("./routes/auth.js");
+const pagesRoutes = require("./routes/pages.js");
+const sessionRoutes = require("./routes/session.js");
+app.use(authRoutes);
+app.use(pagesRoutes);
+app.use(sessionRoutes);
 
 /*
 app.use((req, res, next) => {
