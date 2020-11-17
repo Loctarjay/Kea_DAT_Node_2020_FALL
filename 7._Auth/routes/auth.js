@@ -4,10 +4,15 @@ const bcrypt = require("bcrypt");
 const saltRounds = 12;
 
 const plainTextPassword = "picards'secretpassword";
+const hashedPassword = "$2b$12$oWUd/HhR0jv3zgsQhuUklOOGMyu9Gmsr0xvdfCJIABo6Fv.nZLzJW";
 
-bcrypt.hash(plainTextPassword, saltRounds, (error, hash) => {
-    console.log(hash);
-});
+// bcrypt.hash(plainTextPassword, saltRounds, (error, hash) => {
+//     console.log(hash);
+// });
+
+// bcrypt.compare(plainTextPassword, hashedPassword, (error, result) => {
+//     console.log(result);
+// });
 
 
 
