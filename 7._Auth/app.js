@@ -14,6 +14,15 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+const rateLimiter = require("express-rate-limit");
+
+const authLimiter = rateLimiter({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 6 // limit each IP to 6 requests per windowMs
+});
+
+app.use("/auth", authLimiter);
+
 const authRoutes = require("./routes/auth.js");
 const pagesRoutes = require("./routes/pages.js");
 const sessionRoutes = require("./routes/session.js");
