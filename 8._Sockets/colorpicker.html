@@ -14,10 +14,14 @@
 
         function handleColorChange() {
             const color = document.getElementById("color-picker").value;
+            document.body.style.backgroundColor = color;
 
             socket.emit("client changed color", { data: color });
         }
 
+        socket.on("server sending the color", ({ data }) => {
+            document.body.style.backgroundColor = data;
+        });
 
     </script>
 </body>
