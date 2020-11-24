@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color</title>
+</head>
+<body>
+    <h1>Choose a color</h1>
+    <input type="color" id="color-picker" onchange="handleColorChange()">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        function handleColorChange() {
+            const color = document.getElementById("color-picker").value;
+
+            socket.emit("client changed color", { data: color });
+        }
+
+
+    </script>
+</body>
+</html>
