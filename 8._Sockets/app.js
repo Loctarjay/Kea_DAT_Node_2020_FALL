@@ -17,6 +17,10 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("server sending the color", { data: data });
     });
 
+    socket.on("client submits chat message", ({ data }) => {
+
+    });
+
     socket.on("disconnect", () => {
         // console.log("A socket disconnected. byeeeeeee");
     });
@@ -24,6 +28,10 @@ io.on("connection", (socket) => {
 
 app.get("/colorpicker", (req, res) => {
     return res.sendFile(__dirname + "/colorpicker.html");
+});
+
+app.get("/chat", (req, res) => {
+    return res.sendFile(__dirname + "/chat.html");
 });
 
 server.listen(8080, (error) => {
