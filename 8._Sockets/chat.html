@@ -7,6 +7,7 @@
 <body>
     <textarea id="chat-textarea" rows="6" cols="80"></textarea>
     <button onclick="messageSubmitted()">Send</button>
+    <div id="chat-messages"></div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -18,6 +19,12 @@
 
             socket.emit("client submits chat message", { data: message });
         }
+
+        const chatMessages = document.getElementById("chat-messages");
+
+        socket.on("server sends the chat message", ({ data }) => {
+            chatMessages.prepend(data);
+        });
     </script>
 </body>
 </html>
