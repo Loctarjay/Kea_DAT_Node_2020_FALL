@@ -9,6 +9,7 @@
     <button onclick="messageSubmitted()">Send</button>
     <div id="chat-messages"></div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
@@ -23,7 +24,8 @@
         const chatMessages = document.getElementById("chat-messages");
 
         socket.on("server sends the chat message", ({ data }) => {
-            chatMessages.prepend(data);
+            // chatMessages.prepend(data);
+            $("#chat-messages").append(`<div>${data}</div>`);
         });
     </script>
 </body>

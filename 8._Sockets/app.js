@@ -5,6 +5,8 @@ const server = require('http').createServer(app);
 
 const io = require("socket.io")(server);
 
+const escapeHtml = require("escape-html");
+
 io.on("connection", (socket) => {
     socket.on("client changed color", ({ data }) => {
         // broadcasts to all sockets in this namespace
@@ -18,7 +20,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("client submits chat message", ({ data }) => {
-        io.emit("server sends the chat message", { data });
+        io.emit("server sends the chat message", { data: escapeHtml(data) });
     });
 
     socket.on("disconnect", () => {
